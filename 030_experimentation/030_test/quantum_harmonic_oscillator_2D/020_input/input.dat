@@ -1,0 +1,21 @@
+full_path_name              = /home/mendez/github_repositories/my_repositories/FEMTISE_TUTORIAL/030_experimentation/030_test/quantum_harmonic_oscillator_2D/040_output/
+dom_type                    = s
+nev                         = 10
+dimension                   = 2D
+sigma                       = 0.0
+adhoc_file_name             = /home/mendez/github_repositories/my_repositories/FEMTISE.jl/src/functions/default_running_miscellaneous_functions
+potential_function_name     = qho_2d
+params_potential_types      = f f f
+params_potential            = 1.0 0.0 0.0
+analysis_param              = false
+output_format_type          = jld2 eigen
+## ONLY FOR 1D EIGENPROBLEMS
+L                           = 
+Δx                          = 
+## ONLY FOR 2D EIGENPROBLEMS
+Lx                          = 10
+Ly                          = 10
+nx                          = 100
+ny                          = 100
+different_masses            = false
+reduced_density             = false

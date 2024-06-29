@@ -28,5 +28,5 @@ begin
     using Revise;
     using FEMTISE;
 
-    run_default_eigen_problem(set_type_potential("/home/mendez/github_repositories/my_repositories/FEMTISE_TUTORIALS/030_experimentation/030_test/quantum_harmonic_oscillator_1D/020_input/input"))
+    run_default_eigen_problem(set_type_potential("/home/mendez/github_repositories/my_repositories/FEMTISE_TUTORIAL/030_experimentation/030_test/quantum_harmonic_oscillator_1D/020_input/input"))
 end

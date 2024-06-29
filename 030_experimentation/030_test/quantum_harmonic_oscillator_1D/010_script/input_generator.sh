@@ -9,7 +9,7 @@ elif [ ${computer} == ccad ]; then
     kernel_dir="martinmendez"
 fi
 
-path_repository="/home/${kernel_dir}/github_repositories/my_repositories/FEMTISE_TUTORIALS/"
+path_repository="/home/${kernel_dir}/github_repositories/my_repositories/FEMTISE_TUTORIAL/"
 path_input_file="${path_repository}030_experimentation/030_test/quantum_harmonic_oscillator_1D/020_input/"
 path_output_file="${path_repository}030_experimentation/030_test/quantum_harmonic_oscillator_1D/040_output/"
 
