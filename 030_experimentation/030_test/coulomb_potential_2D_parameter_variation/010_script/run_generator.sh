@@ -10,8 +10,8 @@ elif [ ${computer} == ccad ]; then
 fi
 
 path_repository="/home/${kernel_dir}/github_repositories/my_repositories/FEMTISE_TUTORIAL/"
-path_input_file="${path_repository}030_experimentation/030_test/coulomb_potential_1D_parameter_variation/020_input/"
-path_src_file="${path_repository}030_experimentation/030_test/coulomb_potential_1D_parameter_variation/030_src/"
+path_input_file="${path_repository}030_experimentation/030_test/coulomb_potential_2D_parameter_variation/020_input/"
+path_src_file="${path_repository}030_experimentation/030_test/coulomb_potential_2D_parameter_variation/030_src/"
 input_file_name="${path_input_file}input"
 model_run_file_name="${path_input_file}run"
 run_code_file_name="${path_src_file}run"

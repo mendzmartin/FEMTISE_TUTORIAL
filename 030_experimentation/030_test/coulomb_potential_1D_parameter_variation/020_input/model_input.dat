@@ -1,13 +1,13 @@
 full_path_name              = value
-dom_type                    = ns
-nev                         = 10
+dom_type                    = s
+nev                         = 50
 dimension                   = 1D
-sigma                       = 0.0
+sigma                       = -0.1
 adhoc_file_name             = value
 potential_function_name     = coulomb_potential_interaction_1D
-params_potential_types      = f f f
-params_potential            = -1.0 -1.0 0.01
-analysis_param              = false
+params_potential_types      = f f f f
+params_potential            = -1.0 1.0 0.01 0.0
+analysis_param              = 2 0.0 10.0 0.1
 output_format_type          = jld2 eigen
 ## ONLY FOR 1D EIGENPROBLEMS
 L                           = 100

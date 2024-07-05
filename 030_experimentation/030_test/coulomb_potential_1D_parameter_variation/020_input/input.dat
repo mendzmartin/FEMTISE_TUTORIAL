@@ -1,13 +1,13 @@
-full_path_name              = /home/mendez/github_repositories/my_repositories/FEMTISE_TUTORIAL/030_experimentation/030_test/coulomb_potential_1D_parameter_variation/040_output/
-dom_type                    = ns
-nev                         = 10
+full_path_name              = /home/martin/github_repositories/my_repositories/FEMTISE_TUTORIAL/030_experimentation/030_test/coulomb_potential_1D_parameter_variation/040_output/
+dom_type                    = s
+nev                         = 50
 dimension                   = 1D
-sigma                       = 0.0
-adhoc_file_name             = /home/mendez/github_repositories/my_repositories/FEMTISE_TUTORIAL/030_experimentation/030_test/coulomb_potential_1D_parameter_variation/050_analysis/adhoc_potential_function
+sigma                       = -0.1
+adhoc_file_name             = /home/martin/github_repositories/my_repositories/FEMTISE_TUTORIAL/030_experimentation/030_test/coulomb_potential_1D_parameter_variation/050_analysis/adhoc_potential_function
 potential_function_name     = coulomb_potential_interaction_1D
-params_potential_types      = f f f
-params_potential            = -1.0 -1.0 0.01
-analysis_param              = false
+params_potential_types      = f f f f
+params_potential            = -1.0 1.0 0.01 0.0
+analysis_param              = 2 0.0 10.0 0.1
 output_format_type          = jld2 eigen
 ## ONLY FOR 1D EIGENPROBLEMS
 L                           = 100

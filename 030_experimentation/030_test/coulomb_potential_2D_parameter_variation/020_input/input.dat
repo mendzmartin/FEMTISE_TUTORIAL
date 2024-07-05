@@ -1,0 +1,21 @@
+full_path_name              = /home/martin/github_repositories/my_repositories/FEMTISE_TUTORIAL/030_experimentation/030_test/coulomb_potential_2D_parameter_variation/040_output/
+dom_type                    = s
+nev                         = 10
+dimension                   = 2D
+sigma                       = -1.0
+adhoc_file_name             = /home/martin/github_repositories/my_repositories/FEMTISE_TUTORIAL/030_experimentation/030_test/coulomb_potential_2D_parameter_variation/050_analysis/adhoc_potential_function
+potential_function_name     = effective_electronic_potential_2D
+params_potential_types      = f f
+params_potential            = 1.0 0.5
+analysis_param              = 1 0.0 1.0 0.2
+output_format_type          = jld2 eigen
+## ONLY FOR 1D EIGENPROBLEMS
+L                           = 
+Δx                          = 
+## ONLY FOR 2D EIGENPROBLEMS
+Lx                          = 10
+Ly                          = 10
+nx                          = 200
+ny                          = 200
+different_masses            = false
+reduced_density             = false
