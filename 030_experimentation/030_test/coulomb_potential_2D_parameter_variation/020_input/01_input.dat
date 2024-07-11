@@ -1,0 +1,21 @@
+full_path_name              = /home/martinmendez/github_repositories/my_repositories/FEMTISE_TUTORIAL/030_experimentation/030_test/coulomb_potential_2D_parameter_variation/040_output/effective_Yukawa_potential_2e_without_repulsion
+dom_type                    = s
+nev                         = 50
+dimension                   = 2D
+sigma                       = -10.0
+adhoc_file_name             = /home/martinmendez/github_repositories/my_repositories/FEMTISE_TUTORIAL/030_experimentation/030_test/coulomb_potential_2D_parameter_variation/050_analysis/adhoc_potential_function
+potential_function_name     = effective_Yukawa_potential_2e_without_repulsion
+params_potential_types      = f f f f f
+params_potential            = 1.0 100.0 0.0 2 1.0
+analysis_param              = false
+output_format_type          = jld2 eigen
+## ONLY FOR 1D EIGENPROBLEMS
+L                           = 
+Δx                          = 
+## ONLY FOR 2D EIGENPROBLEMS
+Lx                          = 10
+Ly                          = 10
+nx                          = 100
+ny                          = 100
+different_masses            = false
+reduced_density             = false
