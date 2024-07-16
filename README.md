@@ -1,6 +1,6 @@
 # FEMTISE_TUTORIAL
 
-This repository contains a collection of tutorials to help users get started with the ![FEMTISE.jl](https://github.com/mendzmartin/FEMTISE.jl) package. 
+This repository contains a collection of tutorials to help users get started with the [FEMTISE.jl](https://github.com/mendzmartin/FEMTISE.jl) package. 
 
 ## Table of Contents
 
@@ -8,7 +8,6 @@ This repository contains a collection of tutorials to help users get started wit
 - [Project Structure](#project-structure)
 - [Usage](#usage)
 - [Contributing](#contributing)
-- [License](#license)
 
 ## Introduction
 
