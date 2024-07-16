@@ -1,8 +1,103 @@
 # Tutorial To Simulate Symmetric Finite One Dimensional Kronig-Penney Potential
 
+### Create simulation directory
+First of all we need to create a specific directory to save this specific simulation results 
+
+```bash
+@prompt:~$ mkdir ~/my_directory_path/SFKP1D
+@prompt:~$ cd ~/my_directory_path/SFKP1D
+```
+
+### Create function potential
+
+We need to create a aspecific function potential for Kronig-Penney potential as following:
+
+```bash
+@prompt:~/my_directory_path/SFKP1D$ vi adhoc_potential_function.jl
+```
+
+Inside `adhoc_potential_function` write the following:
+
+```julia
+"""
+    kronig_penney_sturm_liouville(params)
+
+# Aim
+    - Compute Kronig-Penney potential as Sturm-Liouville problem
+
+# Arguments
+    - `params::Tuple`: tuple with parameters
+"""
+function kronig_penney_sturm_liouville(params::Tuple)
+    num_ions,a,b,V₀=params
+    ħ=1.0;m=1.0;
+    p(x) = 0.5*(ħ*ħ)*(1.0/m);
+    q(x) = symetric_kronig_penney(x[1],num_ions,a,b,V₀)
+    r(x) = 1.0;
+    return p,q,r;
+end
+
+function heaviside(x)
+    return 0.5*(sign(x)+1)==true
+ end
+
+function sym_rect_pot_barr(x,b::Real,V₀::Real)
+   return V₀*(heaviside(x+0.5*b)-heaviside(x-0.5*b))
+end
+
+function kronig_penney_center(x,b::Real,V₀::Real)
+    return sym_rect_pot_barr.(x,b,V₀)
+end
+
+function kronig_penney_left(x,num_ions::Integer,a::Real,b::Real,V₀::Real)
+    result=0.0
+    for i in 1:num_ions
+        result = result .+ sym_rect_pot_barr.(x.+i*a,b,V₀)
+    end
+    return result
+end
+
+function kronig_penney_right(x,num_ions::Integer,a::Real,b::Real,V₀::Real)
+    return kronig_penney_left(-x,num_ions,a,b,V₀)
+end
+
+export symetric_kronig_penney
+"""
+    symetric_kronig_penney(x,num_ions,a,b,V₀)
+
+# Aim
+    - Compute symetric Kronig-Penney potential
+
+# Arguments
+    - `x::Real`: input value
+    - `num_ions::Integer`: number of ions
+    - `a::Real`: distance between ions
+    - `b::Real`: width of barrier
+    - `V₀::Real`: height of barrier
+"""
+function symetric_kronig_penney(x,num_ions::Integer,a::Real,b::Real,V₀::Real)
+    if (mod(num_ions,2) == 0)
+        error("num_ions keyword need to be odd")
+        stop()
+    elseif (num_ions==1)
+        kp = kronig_penney_center(x,b,V₀)
+    else
+        kp = kronig_penney_center(x,b,V₀) .+ kronig_penney_left(x,convert(Int,(num_ions-1)/2),a,b,V₀) .+ kronig_penney_right(x,convert(Int,(num_ions-1)/2),a,b,V₀)
+    end
+    return kp
+end
+```
+
+Then using Jupyter Notebook (by intermediate Visual Studio Code) we can analyse output file so:
+
+```bash
+@prompt:~/my_directory_path/SFKP1D$ code SFKP1D.ipynb
+```
+Inside `SFKP1D.ipynb` we need to write the following:
+
 ### Environment Activation
 
-Activamos el environment particular para esta simulación, notemos que dentro de la función `activate` debemos colocar el path donde queremos localizar dicho environment.
+Activate the specific environment for this simulation, note that within the `activate` function we must place the path where we want to locate this environment.
 
 ```julia
 using Pkg
@@ -12,7 +107,7 @@ Pkg.instantiate()
 
 #### Develop Package
 
-En el caso de que sea necesario debemos agregar al environment el paquete FEMTISE con la ubicación local.
+In case it is necessary, we must add the FEMTISE package to the environment with the local location.
 
 ```julia
 develop_package = false
@@ -22,16 +117,14 @@ develop_package ? Pkg.develop(path=path_repo*"FEMTISE.jl") : nothing
 
 #### Adding Packages
 
-Instalamos (si es necesario) y utilizamos paquetes específicos para la simulación.
+We install (if necessary) and use specific packages for the simulation.
 
 ```julia
 install_pkg = false
 if install_pkg
-    Pkg.add("Revise")
     Pkg.add("Gridap")
     Pkg.add("Plots")
 end
-using Revise;
 using FEMTISE;
 using Gridap;
 using Plots;
@@ -39,7 +132,7 @@ using Plots;
 
 ### Miscellaneous functions
 
-Incluimos las funciones definidas dentro del paquete FEMTISE.
+We include the functions defined within the FEMTISE package.
 
 ```julia
 include(path_repo*"FEMTISE.jl/test/test_1d_kronig_penney/miscellaneous_functions.jl")
@@ -47,7 +140,7 @@ include(path_repo*"FEMTISE.jl/test/test_1d_kronig_penney/miscellaneous_functions
 
 ### Potential parameters
 
-Definimos las propiedades del potencial
+We define the properties of the potential
 
 ```julia
 grid_size_length=276;
@@ -62,7 +155,7 @@ unit_cell_potential=distance_between_wells+well_width;
 
 #### Checking representation
 
-Teniendo en cuenta el tamaño finito de la grilla de FE y las dimensiones de los pozos de potencial (ancho y separación) podremos chequear si la cantidad de sitios se pueden representar correctamente
+Taking into account the finite size of the FE grid and the dimensions of the potential wells (width and separation), we can check if the number of sites can be represented correctly.
 
 ```julia
 quantity_check = num_ions*unit_cell_potential;
@@ -71,7 +164,7 @@ quantity_check = num_ions*unit_cell_potential;
 
 ### Grid Building
 
-Creamos la grilla de FE unidimensional
+We create the one-dimensional FE grid.
 
 ```julia
 grid_type="simple_line";
@@ -80,11 +173,11 @@ model1D=make_model(grid_type,params_model);
 rm(params_model[1]*params_model[2]*".msh")
 ```
 
-El último paso podría omitirse si se quiere guardar la grilla en formato `.msh` para visualización externa.
+The last step could be omitted if you want to save the grid in `.msh` format for external visualization.
 
 #### Grid points
 
-Construimos los vectores de puntos (puntos de evaluación de la grilla) y de coordenadas.
+We construct the point vectors (grid evaluation points) and coordinate vectors.
 
 ```julia
 point_number=round(Int,abs(grid_size_length/space_discretization)+1)
@@ -101,7 +194,7 @@ display(fig)
 
 ### Boundary conditions
 
-Definimos las condiciones de borde del sistema, en nuestro caso definimos condiciones de borde homogéneas en toda la frontera.
+We define the boundary conditions of the system, in our case we define homogeneous boundary conditions throughout the boundary.
 
 ```julia
 BC_type="FullDirichlet";
@@ -110,7 +203,7 @@ FullDirichlet_values,FullDirichlet_tags=make_boundary_conditions(grid_type,BC_ty
 
 ### FE Domains
 
-Construimos los dominios FE de la grilla: interiores y frontera. Además construimos los diferenciales de dichos dominios.
+We construct the FE domains of the grid: interior and boundary. Additionally, we construct the differentials of these domains.
 
 ```julia
 interior_FE_domain,differential_interior_FE_domain,boundary_FE_domain,differential_boundary_FE_domain = measures(model1D,3,FullDirichlet_tags)
@@ -118,7 +211,7 @@ interior_FE_domain,differential_interior_FE_domain,boundary_FE_domain,differenti
 
 ### FE Reference
 
-Definimos los polinomios de interpolación que se utilizarán y creamos los espacios Test y Trial asociados a las formulaciones débiles del problema.
+We define the interpolation polynomials to be used and create the Test and Trial spaces associated with the weak formulations of the problem.
 
 ```julia
 reff = ReferenceFE(lagrangian,Float64,2)
@@ -127,7 +220,7 @@ TestSpace,TrialSpace = fe_spaces(model1D,reff,grid_type;BC_type=BC_type,TypeData
 
 ### Sturm-Liouville formulation
 
-Definimos las funciones para utilizar la formulación de tipo Sturm-Liouville
+We define the functions to use the Sturm-Liouville type formulation.
 
 ```julia
 p,q,r = kronig_penney_sturm_liouville((num_ions,unit_cell_potential,well_width,potential_depth))
@@ -135,7 +228,7 @@ p,q,r = kronig_penney_sturm_liouville((num_ions,unit_cell_potential,well_width,p
 
 ### Eigen value problem
 
-Resolvemos el problema de autovalores
+We solve the eigenvalue problem
 
 ```julia
 eigen_energies,eigen_states = eigen_values_and_eigen_vectors(p,q,r,differential_interior_FE_domain,TrialSpace,TestSpace;
@@ -160,4 +253,4 @@ label="0.1*Kronig-Penney potential [au]")
 display(fig)
 ```
 
-We can save de figure using `savefig(fig,"010_example_kronig-penney.pdf")`.
+We can save de figure using `savefig(fig,"example_kronig-penney.pdf")`.
