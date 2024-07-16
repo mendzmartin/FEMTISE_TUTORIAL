@@ -1,6 +1,6 @@
 # FEMTISE_TUTORIAL
 
-This repository contains a collection of tutorials to help users get started with the FEMTISE.jl package. 
+This repository contains a collection of tutorials to help users get started with the ![FEMTISE.jl](https://github.com/mendzmartin/FEMTISE.jl) package. 
 
 ## Table of Contents
 
@@ -16,24 +16,9 @@ FEMTISE_TUTORIAL is designed to provide a structured learning path for using FEM
 
 ## Project Structure
 
-- **project_management/**: Guidelines and resources for managing research projects.
-  - **files_and_reports/**
-  - **figures_tables_images_photos/**
-  - **proposals_applications_approvals/**
-
-- **ethics_and_governance/**: Documents and forms related to ethical considerations and governance.
-  - **ethics_forms/**
-  - **governance_guidelines/**
-  - **sample_docs/**
-
-- **experimentation/**: Resources for conducting experiments.
-  - **data_analysis/**
-  - **experimental_protocols/**
-  - **simulation_results/**
-
-- **dissemination/**: Information on disseminating research findings.
-  - **papers_and_publications/**
-  - **presentations/**
+- **src/**: Guidelines and resources for managing research projects.
+  - **specific_tutorial_name/**: folder where you can find all essential codes and files to simulate and reproduce results. Also include Notebook Julia codes to analyse data.
+- **docs/**: folder with tutorial and auxiliar documentation.
 
 ## Usage
 
