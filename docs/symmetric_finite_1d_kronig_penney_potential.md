@@ -26,7 +26,7 @@ $$
 \begin{equation*}
     \begin{cases}
         f_{\text{C}}(x) = V_{0}\left[ \Theta \left(x + \frac{b}{2}\right) - \Theta \left( x-\frac{b}{2}\right)\right]\\
-        f_{\text{L}}(x) = \sum _{i=1}^{(n-1)/2} f_{\text{C}}(x+ia)\\
+        f_{\text{L}}(x) = \sum f_{\text{C}}(x+ia); 1 \le i \le (n-1)/2\\
         f_{\text{R}}(x)= f_{\text{L}}(-x)
     \end{cases}
 \end{equation*}
