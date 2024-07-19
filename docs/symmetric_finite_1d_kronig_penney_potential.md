@@ -18,6 +18,10 @@ We need to create a aspecific function potential for Kronig-Penney potential as 
 
 Inside `adhoc_potential_function` write the following:
 
+```math
+\Theta(x) = \frac{1}{2} \left[ \text{sign}(x)+1 \right] \ \text{where} \ \text{sign}(x) = \begin{cases} 1 & ,x >0 \\ 0 & ,x=0 \\ -1 & ,x< 0
+```
+
 ```julia
 """
     kronig_penney_sturm_liouville(params)
