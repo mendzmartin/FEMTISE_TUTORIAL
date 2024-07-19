@@ -32,10 +32,7 @@ $$
 \end{equation*}
 $$
 
-Therefore symmetric finit one dimensional Kronig-Penney potential take de form
-$$
-V( x) =f_{\text{L}}( x) +f_{\text{C}}( x) +f_{\text{R}}(x)
-$$
+Therefore symmetric finit one dimensional Kronig-Penney potential take de form $V( x) =f_{\text{L}}( x) +f_{\text{C}}( x) +f_{\text{R}}(x)$.
 
 Now write in Julia code the previous functions, first open a Julia code as:
 
