@@ -1,26 +1,49 @@
-# Tutorial To Simulate Symmetric Finite One Dimensional Kronig-Penney Potential
+# TUTORIAL TO SIMULATE SYMMETRIC FINITE ONE DIMENSIONAL KRONIG-PENNEY POTENTIAL
 
-### Create simulation directory
-First of all we need to create a specific directory to save this specific simulation results 
+## WORK DIRECTORY
+
+First create a specific directory to save all data related to simulation: 
 
 ```bash
 @prompt:~$ mkdir ~/my_directory_path/SFKP1D
 @prompt:~$ cd ~/my_directory_path/SFKP1D
 ```
+## POTENTIAL FUNCTION
 
-### Create function potential
+Then, build a specific potential function for Kronig-Penney potential. This definition can be arbitrary, however, as an example think a formulation using following function definitions:
 
-We need to create a aspecific function potential for Kronig-Penney potential as following:
+$$
+\begin{equation*}
+    \Theta ( x) =\frac{1}{2}\left[\text{sign}( x) +1\right] \ \text{where} \ \text{sign}( x) =\begin{cases}
+        1 & ,x >0\\
+        0 & ,x=0\\
+        -1 & ,x< 0
+    \end{cases}
+\end{equation*}
+$$
+
+$$
+\begin{equation*}
+    \begin{cases}
+        f_{\text{C}}( x) =V_{0}\left[ \Theta \left( x+\frac{b}{2}\right) -\Theta \left( x-\frac{b}{2}\right)\right]\\
+        f_{\text{L}}( x) =\sum\nolimits _{i=1}^{( n-1) /2} f_{\text{C}}( x+ia)\\
+        f_{\text{R}}( x) =f_{\text{L}}( -x)
+    \end{cases}
+\end{equation*}
+$$
+
+Therefore symmetric finit one dimensional Kronig-Penney potential take de form
+$$
+V( x) =f_{\text{L}}( x) +f_{\text{C}}( x) +f_{\text{R}}(x)
+$$
+
+Now write in Julia code the previous functions, first open a Julia code as:
 
 ```bash
 @prompt:~/my_directory_path/SFKP1D$ vi adhoc_potential_function.jl
 ```
 
-Inside `adhoc_potential_function` write the following:
-
-$$
-\Theta(x) = \frac{1}{2} \left[ \text{sign}(x)+1 \right] \ \text{where} \ \text{sign}(x) = \begin{cases} 1 & ,x >0 \\ 0 & ,x=0 \\ -1 & ,x< 0 \end{cases}
-$$
+and inside `adhoc_potential_function` write the following:
 
 ```julia
 """
@@ -92,16 +115,19 @@ function symetric_kronig_penney(x,num_ions::Integer,a::Real,b::Real,V₀::Real)
 end
 ```
 
-Then using Jupyter Notebook (by intermediate Visual Studio Code) we can analyse output file so:
+## SIMULATION
+
+Later, open a Jupyter Notebook by intermediate Visual Studio Code to simulate problem:
 
 ```bash
 @prompt:~/my_directory_path/SFKP1D$ code SFKP1D.ipynb
 ```
-Inside `SFKP1D.ipynb` we need to write the following:
 
-### Environment Activation
+and iside `SFKP1D.ipynb` we write the following:
 
-Activate the specific environment for this simulation, note that within the `activate` function we must place the path where we want to locate this environment.
+###### ENVIRONMENT
+
+Activate the specific environment for this simulation, note that within the `activate` function use path for specific location of environment.
 
 ```julia
 using Pkg
@@ -109,9 +135,7 @@ Pkg.activate(".")
 Pkg.instantiate()
 ```
 
-#### Develop Package
-
-In case it is necessary, we must add the FEMTISE package to the environment with the local location.
+In case it is necessary, add the FEMTISE package to the environment with the local location.
 
 ```julia
 develop_package = false
@@ -119,9 +143,7 @@ path_repo="~/my_path_repo/"
 develop_package ? Pkg.develop(path=path_repo*"FEMTISE.jl") : nothing
 ```
 
-#### Adding Packages
-
-We install (if necessary) and use specific packages for the simulation.
+Install (if necessary) and use specific packages for the simulation.
 
 ```julia
 install_pkg = false
@@ -134,17 +156,15 @@ using Gridap;
 using Plots;
 ```
 
-### Miscellaneous functions
+###### POTENTIAL FUNCTION
 
-We include the potential function defined in specific Julia file:
+Include the potential function defined in specific Julia file:
 
 ```julia
 include("~/my_directory_path/SFKP1D/adhoc_potential_function.jl")
 ```
 
-### Potential parameters
-
-We define the properties of the potential
+Define the properties of the potential
 
 ```julia
 grid_size_length=276;
@@ -157,18 +177,20 @@ space_discretization=0.01;
 unit_cell_potential=distance_between_wells+well_width;
 ```
 
-#### Checking representation
-
-Taking into account the finite size of the FE grid and the dimensions of the potential wells (width and separation), we can check if the number of sites can be represented correctly.
+Taking into account the finite size of the FE grid and the dimensions of the potential wells (width and separation), is useful to check if the number of sites can be represented correctly.
 
 ```julia
 quantity_check = num_ions*unit_cell_potential;
-(grid_size_length ≥ quantity_check) ? println("The value of grid size length is ok (≥ $(quantity_check)).") : println("Increase grid size length, must be grid_size_length ≥ $(quantity_check).")
+if grid_size_length ≥ quantity_check
+    println("The value of grid size length is ok (≥ $(quantity_check)).")
+else
+    println("Increase grid size length, must be grid_size_length ≥ $(quantity_check).")
+end
 ```
 
-### Grid Building
+###### FINITE ELEMENT GRID
 
-We create the one-dimensional FE grid.
+Create the one-dimensional FE grid.
 
 ```julia
 grid_type="simple_line";
@@ -177,18 +199,14 @@ model1D=make_model(grid_type,params_model);
 rm(params_model[1]*params_model[2]*".msh")
 ```
 
-The last step could be omitted if you want to save the grid in `.msh` format for external visualization.
-
-#### Grid points
-
-We construct the point vectors (grid evaluation points) and coordinate vectors.
+The last step could be omitted if you want to save the grid in `.msh` format for external visualization. Then, construct the point vectors (grid evaluation points) and coordinate vectors.
 
 ```julia
 point_number=round(Int,abs(grid_size_length/space_discretization)+1)
 space_coordinate,points=space_coord((-0.5*grid_size_length,0.5*grid_size_length),space_discretization,point_number-1;dimension="1D")
 ```
 
-#### Plotting potential function
+Now plot potential function:
 
 ```julia
 fig = plot(space_coordinate,symetric_kronig_penney(space_coordinate,num_ions,unit_cell_potential,well_width,potential_depth),label="")
@@ -196,50 +214,50 @@ fig = plot!(fig,xlabel="space coordinate (x [au])",ylabel="potential depth (v [a
 display(fig)
 ```
 
-### Boundary conditions
+###### BOUNDARY CONDITION
 
-We define the boundary conditions of the system, in our case we define homogeneous boundary conditions throughout the boundary.
+Define the boundary conditions of the system, for this case define homogeneous boundary conditions throughout the boundary.
 
 ```julia
 BC_type="FullDirichlet";
 FullDirichlet_values,FullDirichlet_tags=make_boundary_conditions(grid_type,BC_type,ComplexF64);
 ```
 
-### FE Domains
+###### FINITE ELEMENT DOMAINS
 
-We construct the FE domains of the grid: interior and boundary. Additionally, we construct the differentials of these domains.
+Construct the FE domains of the grid: interior and boundary. Additionally, construct the differentials of these domains.
 
 ```julia
 interior_FE_domain,differential_interior_FE_domain,boundary_FE_domain,differential_boundary_FE_domain = measures(model1D,3,FullDirichlet_tags)
 ```
 
-### FE Reference
+###### FINITE ELEMENT REFERENCE
 
-We define the interpolation polynomials to be used and create the Test and Trial spaces associated with the weak formulations of the problem.
+Define the interpolation polynomials to be used and create the Test and Trial spaces associated with the weak formulations of the problem.
 
 ```julia
 reff = ReferenceFE(lagrangian,Float64,2)
 TestSpace,TrialSpace = fe_spaces(model1D,reff,grid_type;BC_type=BC_type,TypeData=ComplexF64)
 ```
 
-### Sturm-Liouville formulation
+###### STURM-LIOUVILLE FORMULATION
 
-We define the functions to use the Sturm-Liouville type formulation.
+Define the functions to use the Sturm-Liouville type formulation.
 
 ```julia
 p,q,r = kronig_penney_sturm_liouville((num_ions,unit_cell_potential,well_width,potential_depth))
 ```
 
-### Eigen value problem
+###### EIGEN VALUE PROBLEM
 
-We solve the eigenvalue problem
+Solve the eigenvalue problem
 
 ```julia
 eigen_energies,eigen_states = eigen_values_and_eigen_vectors(p,q,r,differential_interior_FE_domain,TrialSpace,TestSpace;
 params=(10,1e-9,500,:none,potential_depth))
 ```
 
-### Plotting results
+###### PLOT EIGEN-ENERGIES AND EIGEN-STATES
 
 ```julia
 fig=plot()
@@ -257,4 +275,4 @@ label="0.1*Kronig-Penney potential [au]")
 display(fig)
 ```
 
-We can save de figure using `savefig(fig,"example_kronig_penney.pdf")`.
+Save de figure using `savefig(fig,"example_kronig_penney.pdf")`.
