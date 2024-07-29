@@ -79,9 +79,9 @@ function evolution_schrodinger(
     coeffvec=initial_coefficients(initial_wave_function,eigen_states,differential_interior_FE_domain)
     # wave_function=interpolate_everywhere((coeffvec[1]*eigen_states[1]),trial_space)
     wave_function=0.0*eigen_states[1]
-    for j in 1:length(eigen_energies)
-        factor = coeffvec[j]*exp(-im*(1.0/Planck_constant)*time*eigen_energies[j])
-        wave_function=interpolate_everywhere((wave_function+factor*eigen_states[j]),trial_space)
+    for i in eachindex(eigen_energies)
+        factor = coeffvec[i]*exp(-im*(1.0/Planck_constant)*time*eigen_energies[i])
+        wave_function=interpolate_everywhere((wave_function+factor*eigen_states[i]),trial_space)
     end
     return wave_function;
 end

@@ -1,6 +1,6 @@
 # This file is machine-generated - editing it directly is not advised
 
-julia_version = "1.9.0"
+julia_version = "1.9.3"
 manifest_format = "2.0"
 project_hash = "6dabc89c6e8bd2904d053dda81157899af30be65"
 
@@ -218,7 +218,7 @@ weakdeps = ["Dates", "LinearAlgebra"]
 [[deps.CompilerSupportLibraries_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "e66e0078-7015-5450-92f7-15fbd957f2ae"
-version = "1.0.2+0"
+version = "1.0.5+0"
 
 [[deps.ConcurrentUtilities]]
 deps = ["Serialization", "Sockets"]
@@ -344,7 +344,7 @@ version = "2.6.2+0"
 
 [[deps.FEMTISE]]
 deps = ["Arpack", "DelimitedFiles", "Documenter", "DocumenterTools", "FileIO", "Gmsh", "Gridap", "GridapGmsh", "JLD2", "KeywordDispatch", "LinearAlgebra", "Pkg", "SparseArrays", "SpecialFunctions"]
-path = "/home/martin/github_repositories/my_repositories/FEMTISE.jl"
+path = "/home/mendez/github_repositories/my_repositories/FEMTISE.jl"
 uuid = "0bd82848-28f8-4e57-bc39-0a3ec24854bf"
 version = "1.0.0-DEV"
 
@@ -528,10 +528,10 @@ uuid = "3b182d85-2403-5c21-9c21-1e1f0cc25472"
 version = "1.3.14+0"
 
 [[deps.Gridap]]
-deps = ["AbstractTrees", "BSON", "BlockArrays", "Combinatorics", "DataStructures", "DocStringExtensions", "FastGaussQuadrature", "FileIO", "FillArrays", "ForwardDiff", "JLD2", "JSON", "LineSearches", "LinearAlgebra", "NLsolve", "NearestNeighbors", "PolynomialBases", "Preferences", "QuadGK", "Random", "SparseArrays", "SparseMatricesCSR", "StaticArrays", "Statistics", "Test", "WriteVTK"]
-git-tree-sha1 = "195d7227ea45e1e62d5646bfedc36347f77775b8"
+deps = ["AbstractTrees", "BSON", "BlockArrays", "Combinatorics", "DataStructures", "DocStringExtensions", "FastGaussQuadrature", "FileIO", "FillArrays", "ForwardDiff", "JLD2", "JSON", "LineSearches", "LinearAlgebra", "NLsolve", "NearestNeighbors", "PolynomialBases", "QuadGK", "Random", "SparseArrays", "SparseMatricesCSR", "StaticArrays", "Statistics", "Test", "WriteVTK"]
+git-tree-sha1 = "4918159105057659c25508ea2729fa7b5e4990ae"
 uuid = "56d4f2e9-7ea1-5844-9cf6-b9c51ca7ce8e"
-version = "0.18.3"
+version = "0.18.2"
 
 [[deps.GridapDistributed]]
 deps = ["BlockArrays", "FillArrays", "Gridap", "LinearAlgebra", "MPI", "PartitionedArrays", "SparseArrays", "SparseMatricesCSR", "WriteVTK"]
@@ -1124,7 +1124,7 @@ version = "0.43.4+0"
 [[deps.Pkg]]
 deps = ["Artifacts", "Dates", "Downloads", "FileWatching", "LibGit2", "Libdl", "Logging", "Markdown", "Printf", "REPL", "Random", "SHA", "Serialization", "TOML", "Tar", "UUIDs", "p7zip_jll"]
 uuid = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
-version = "1.9.0"
+version = "1.9.2"
 
 [[deps.PkgVersion]]
 deps = ["Pkg"]
@@ -1406,10 +1406,10 @@ uuid = "3783bdb8-4a98-5b6b-af9a-565f29a5fe9c"
 version = "1.0.1"
 
 [[deps.Tables]]
-deps = ["DataAPI", "DataValueInterfaces", "IteratorInterfaceExtensions", "OrderedCollections", "TableTraits"]
-git-tree-sha1 = "598cd7c1f68d1e205689b1c2fe65a9f85846f297"
+deps = ["DataAPI", "DataValueInterfaces", "IteratorInterfaceExtensions", "LinearAlgebra", "OrderedCollections", "TableTraits"]
+git-tree-sha1 = "cb76cf677714c095e535e3501ac7954732aeea2d"
 uuid = "bd369af6-aec1-5ad0-b16a-f7cc5008161c"
-version = "1.12.0"
+version = "1.11.1"
 
 [[deps.Tar]]
 deps = ["ArgTools", "SHA"]
@@ -1748,7 +1748,7 @@ version = "0.15.1+0"
 [[deps.libblastrampoline_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "8e850b90-86db-534c-a0d3-1478176c7d93"
-version = "5.7.0+0"
+version = "5.8.0+0"
 
 [[deps.libevdev_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
