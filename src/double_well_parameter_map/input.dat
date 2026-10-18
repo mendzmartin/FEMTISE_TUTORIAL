@@ -1,0 +1,24 @@
+full_path_name              = ./output/double_well_map
+dom_type                    = s
+nev                         = 4
+dimension                   = 1D
+sigma                       = -2.0
+adhoc_file_name             = ./adhoc_potential_function
+potential_function_name     = double_well
+params_potential_types      = f f
+params_potential            = 1.0 0.0
+analysis_param              = 1 0.75 10.0 0.25
+output_format_type          = jld2 eigen
+## ONLY FOR 1D EIGENPROBLEMS
+L                           = 8.0
+Δx                          = 0.02
+## ONLY FOR 2D EIGENPROBLEMS
+Lx                          =
+Ly                          =
+nx                          =
+ny                          =
+different_masses            =
+reduced_density             =
+## OPTIONAL SETTINGS (FEMTISE v0.2.0)
+analysis_param_2            = 2 -0.05 1.0 0.05
+quadrature_degree           = 8

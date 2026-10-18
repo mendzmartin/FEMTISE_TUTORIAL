@@ -12,15 +12,19 @@ produces publication-quality figures.
 | [2D harmonic oscillator](docs/isotropic_2d_harmonic_oscillator_potential.md) | degenerate levels $\omega(n+1)$ | 2D meshes, degeneracies, density maps |
 | [Finite Kronig–Penney chain](docs/symmetric_finite_1d_kronig_penney_potential.md) | band formation | discontinuous potentials, integer parameters |
 | [Helium-like two-electron model](docs/coulomb_interaction_2d_potential.md) | electron correlation | two particles on a 2D mesh, parameter sweeps |
+| [Vibrations from a tabulated potential](docs/tabulated_morse_vibrations.md) | H₂ Morse levels | potential data files, nuclear masses, interpolation accuracy |
+| [Autocorrelation and spectrum](docs/autocorrelation_spectrum.md) | wave-packet revivals, Franck–Condon spectrum | $C(t)$, its Fourier transform $\sigma(\omega)$ |
+| [Tilted double well](docs/double_well_parameter_map.md) | tunnelling splitting | two-parameter sweeps, energy maps |
+| [Nucleus + electron + cavity photon](docs/pauli_fierz_cavity.md) | polaritons, Rabi splitting | Pauli–Fierz Hamiltonian, three coordinates with different masses |
 
-The tutorials are written for **FEMTISE.jl v0.1.1**.
+The tutorials are written for **FEMTISE.jl v0.2.0** (the first four also run with v0.1.1).
 
 ## Quick start
 
 ```bash
 git clone https://github.com/mendzmartin/FEMTISE_TUTORIAL.git
 cd FEMTISE_TUTORIAL
-julia --project=. setup.jl                    # once: installs FEMTISE v0.1.1 and CairoMakie
+julia --project=. setup.jl                    # once: installs FEMTISE v0.2.0 and CairoMakie
 julia --project=. make_figures.jl             # runs every tutorial and regenerates all figures
 ```
 
@@ -37,7 +41,7 @@ them when they exist; pass `--rerun` to recompute.
 
 ```
 FEMTISE_TUTORIAL/
-├── Project.toml          # environment shared by all tutorials (FEMTISE v0.1.1, CairoMakie)
+├── Project.toml          # environment shared by all tutorials (FEMTISE v0.2.0, CairoMakie)
 ├── setup.jl              # installs the environment (also on Julia 1.10)
 ├── make_figures.jl       # runs all tutorials
 ├── tools/
