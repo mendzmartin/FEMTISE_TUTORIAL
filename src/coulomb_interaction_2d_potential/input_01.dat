@@ -1,4 +1,4 @@
-full_path_name              = output_01
+full_path_name              = ./output/no_repulsion
 dom_type                    = s
 nev                         = 50
 dimension                   = 2D

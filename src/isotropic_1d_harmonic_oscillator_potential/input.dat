@@ -1,4 +1,4 @@
-full_path_name              = ./output
+full_path_name              = ./output/qho1d
 dom_type                    = s
 nev                         = 10
 dimension                   = 1D

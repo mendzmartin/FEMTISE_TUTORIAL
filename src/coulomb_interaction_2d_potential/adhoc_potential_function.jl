@@ -8,11 +8,14 @@ function avoided_divergence(DOF,b)
     return func
 end
 
+# Effective interaction between two charges confined in a harmonic transverse trap:
+#   v(z) = a exp(ξ² + b²) erfc(ξ + b),   ξ = |z|/l,  b = l/(2 l_Yukawa),
+# evaluated without overflow as  v(z) = a exp(-2ξb) h(ξ + b),  h(u) = exp(u²) erfc(u).
 function reduced_confinement_function(DOF1,DOF2,confinement_length,Yukawa_length,atomic_number)
     a=atomic_number*π*sqrt(π)*0.5*(1.0/confinement_length);
     b=confinement_length*0.5*(1.0/abs(Yukawa_length));
     coordinate=distance(DOF1,DOF2)*(1.0/confinement_length);
-    return a*exp((-2.0*coordinate+b)*b)*avoided_divergence(coordinate,b)
+    return a*exp(-2.0*coordinate*b)*avoided_divergence(coordinate,b)
 end
 
 export effective_Yukawa_potential_2e

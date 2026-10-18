@@ -1,4 +1,4 @@
-full_path_name              = output_03
+full_path_name              = ./output/switch_sweep
 dom_type                    = s
 nev                         = 50
 dimension                   = 2D
