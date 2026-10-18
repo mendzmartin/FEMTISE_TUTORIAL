@@ -1,0 +1,26 @@
+full_path_name              = ./output/morse_linear
+dom_type                    = ns
+nev                         = 12
+dimension                   = 1D
+sigma                       = 0.0
+adhoc_file_name             =
+potential_function_name     =
+params_potential_types      =
+params_potential            =
+analysis_param              = false
+output_format_type          = jld2 eigen
+## ONLY FOR 1D EIGENPROBLEMS
+L                           = 8.0
+Δx                          = 0.01
+## ONLY FOR 2D EIGENPROBLEMS
+Lx                          =
+Ly                          =
+nx                          =
+ny                          =
+different_masses            =
+reduced_density             =
+## OPTIONAL SETTINGS (FEMTISE v0.2.0)
+masses                      = 918.08
+potential_data_file         = ./pec.dat
+interpolation               = linear
+quadrature_degree           = 6

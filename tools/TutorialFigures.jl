@@ -207,6 +207,7 @@ end
     plot_densities_1d(x, densities, energies; potential = nothing, states = 1:3,
                       scale = 1.0, xlimits = extrema(x), ylimits = nothing,
                       energy_unit = "a.u.", position_unit = "a.u.",
+                      position_name = "Position", position_symbol = "x",
                       width = 480, height = 220)
 
 Probability densities ``\\rho_n(x)`` drawn at the height of their energies,
@@ -216,15 +217,17 @@ Probability densities ``\\rho_n(x)`` drawn at the height of their energies,
 function plot_densities_1d(x, densities, energies; potential = nothing, states = 1:3,
                            scale::Real = 1.0, xlimits = extrema(x), ylimits = nothing,
                            energy_unit = "a.u.", position_unit = "a.u.",
+                           position_name = "Position", position_symbol = "x",
                            width = 480, height = 220)
     fig = Figure(size = (width, height))
-    ax = Axis(fig[1, 1], xlabel = axis_label("Position", "x", position_unit),
-              ylabel = axis_label("Energy", "V(x),\\ \\varepsilon_n+c\\,\\rho_n(x)", energy_unit))
+    q = position_symbol
+    ax = Axis(fig[1, 1], xlabel = axis_label(position_name, q, position_unit),
+              ylabel = axis_label("Energy", "V($q),\\ \\varepsilon_n+c\\,\\rho_n($q)", energy_unit))
     plots, labels = Any[], Any[]
     if !isnothing(potential)
         # thick light-gray line: distinguishable from the states also in grey scale
         push!(plots, lines!(ax, x, potential; color = :gray75, linewidth = 2.6))
-        push!(labels, L"V(x)")
+        push!(labels, math_label("V($q)"))
     end
     for (k, n) in enumerate(states)
         s = series_style(k)

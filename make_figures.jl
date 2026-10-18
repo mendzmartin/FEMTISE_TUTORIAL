@@ -10,6 +10,10 @@ const TUTORIALS = [
     "isotropic_2d_harmonic_oscillator_potential",
     "symmetric_finite_1d_kronig_penney_potential",
     "coulomb_interaction_2d_potential",
+    "tabulated_morse_vibrations",
+    "autocorrelation_spectrum",
+    "double_well_parameter_map",
+    "pauli_fierz_cavity",
 ]
 
 for tutorial in TUTORIALS
