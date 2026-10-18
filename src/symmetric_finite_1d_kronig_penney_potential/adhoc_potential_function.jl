@@ -140,3 +140,20 @@ function symetric_kronig_penney(x,num_ions::Integer,a::Real,b::Real,V₀::Real)
     end
     return kp
 end
+
+export kronig_penney_potential
+"""
+    kronig_penney_potential(x, params)
+
+# Aim
+    - Potential function in the form expected by the FEMTISE input-file driver.
+
+# Arguments
+    - `x`: point of the finite element mesh (`x[1]` is the coordinate).
+    - `params::Tuple = (num_ions, a, b, V₀)`: number of wells (odd), distance
+      between well centres, well width and well depth (negative), in atomic units.
+"""
+function kronig_penney_potential(x, params::Tuple)
+    num_ions, a, b, V₀ = params
+    return symetric_kronig_penney(x[1], num_ions, a, b, V₀)
+end

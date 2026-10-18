@@ -1,0 +1,15 @@
+[deps]
+CairoMakie = "13f3f980-e62b-5c42-98c6-ff1f3baf88f0"
+FEMTISE = "0bd82848-28f8-4e57-bc39-0a3ec24854bf"
+Gridap = "56d4f2e9-7ea1-5844-9cf6-b9c51ca7ce8e"
+JLD2 = "033835bb-8acc-5ee8-8aae-3f567f8a3819"
+
+[sources]
+FEMTISE = {url = "https://github.com/mendzmartin/FEMTISE.jl", rev = "v0.1.1"}
+
+[compat]
+CairoMakie = "0.15"
+FEMTISE = "0.1.1"
+Gridap = "0.19"
+JLD2 = "0.5"
+julia = "1.10"

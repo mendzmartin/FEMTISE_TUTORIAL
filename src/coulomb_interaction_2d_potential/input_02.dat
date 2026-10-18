@@ -1,4 +1,4 @@
-full_path_name              = output_02
+full_path_name              = ./output/full_interaction
 dom_type                    = s
 nev                         = 50
 dimension                   = 2D

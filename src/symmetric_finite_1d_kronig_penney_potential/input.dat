@@ -1,0 +1,21 @@
+full_path_name              = ./output/kronig_penney
+dom_type                    = s
+nev                         = 30
+dimension                   = 1D
+sigma                       = -0.5
+adhoc_file_name             = ./adhoc_potential_function
+potential_function_name     = kronig_penney_potential
+params_potential_types      = i f f f
+params_potential            = 23 12.0 1.0 -0.5
+analysis_param              = false
+output_format_type          = jld2 eigen
+## ONLY FOR 1D EIGENPROBLEMS
+L                           = 276.0
+Δx                          = 0.01
+## ONLY FOR 2D EIGENPROBLEMS
+Lx                          =
+Ly                          =
+nx                          =
+ny                          =
+different_masses            =
+reduced_density             =
